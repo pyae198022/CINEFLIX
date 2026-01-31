@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignUpController {
 	
-	private final AuthenticationManager authenticationManager;
+	private final AuthenticationManager authenticationManager = null;
 	
 	private final SignUpService signUpService;
 

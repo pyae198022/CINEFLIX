@@ -1,0 +1,49 @@
+MOVIE,1,Fury Road,2024,4.8,2h 18m,A high-octane action thriller that pushes the boundaries of cinema with breathtaking stunts and a gripping narrative. In a post-apocalyptic wasteland,hero-movie.jpg,https://www.youtube.com/embed/hEJnMQG9ev8,George Miller
+MOVIE,2,Cosmic Voyage,2024,4.6,2h 45m,An epic journey through the cosmos that explores the depths of space and the human spirit. A team of explorers travel beyond our galaxy to discover a wormhole that could save humanity from extinction.,movie-1.jpg,https://www.youtube.com/embed/zSWdZVtXT7E,Christopher Nolan
+MOVIE,3,Eternal Sunset,2023,4.4,1h 58m,A beautiful love story that spans across time,movie-2.jpg,https://www.youtube.com/embed/1-gWAsI71Oc,Richard Linklater
+MOVIE,4,The Haunting,2024,4.2,1h 52m,A chilling supernatural horror that will keep you on the edge of your seat. A family moves into a mansion with a dark history,movie-3.jpg,https://www.youtube.com/embed/V6wWKNij_1M,Mike Flanagan
+MOVIE,5,Kingdom Quest,2024,4.7,1h 45m,A magical animated adventure that captures the imagination of viewers of all ages. A young princess must embark on a dangerous quest to save her kingdom from an ancient curse.,movie-4.jpg,https://www.youtube.com/embed/ByXuk9QqQkk,Hayao Miyazaki
+MOVIE,6,Dark Streets,2023,4.5,2h 12m,A gripping noir thriller that takes you into the dark underbelly of the city. A private detective gets entangled in a web of corruption and murder while investigating a wealthy family's secrets.,movie-5.jpg,https://www.youtube.com/embed/tI1JGPhYBS8,Denis Villeneuve
+GENRE,1,Action
+GENRE,1,Thriller
+GENRE,2,Sci-Fi
+GENRE,2,Adventure
+GENRE,3,Romance
+GENRE,3,Drama
+GENRE,4,Horror
+GENRE,4,Supernatural
+GENRE,5,Animation
+GENRE,5,Adventure
+GENRE,6,Crime
+GENRE,6,Noir
+CAST,c1,1,Tom Hardy,Max Rockatansky,https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
+CAST,c2,1,Charlize Theron,Imperator Furiosa,https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face
+CAST,c3,1,Nicholas Hoult,Nux,https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face
+CAST,c4,1,Zoë Kravitz,Toast the Knowing,https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face
+CAST,c5,2,Matthew McConaughey,Cooper,https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop&crop=face
+CAST,c6,2,Anne Hathaway,Dr. Brand,https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face
+CAST,c7,2,Jessica Chastain,Murphy,https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face
+CAST,c8,2,Michael Caine,Professor Brand,https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
+CAST,c9,3,Ryan Gosling,Noah,https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face
+CAST,c10,3,Emma Stone,Mia,https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face
+CAST,c11,3,Rachel McAdams,Allie,https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face
+CAST,c12,3,Timothée Chalamet,Young Noah,https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop&crop=face
+CAST,c13,4,Florence Pugh,Eleanor Vance,https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face
+CAST,c14,4,Pedro Pascal,Dr. John Montague,https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
+CAST,c15,4,Mia Goth,Theodora,https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face
+CAST,c16,4,Bill Skarsgård,Luke Sanderson,https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face
+CAST,c17,5,Zendaya,Princess Aria (voice),https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face
+CAST,c18,5,Oscar Isaac,Sir Roland (voice),https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
+CAST,c19,5,Anya Taylor-Joy,The Witch (voice),https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face
+CAST,c20,5,Keanu Reeves,The King (voice),https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop&crop=face
+CAST,c21,6,Robert Pattinson,Detective Jake Marlowe,https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face
+CAST,c22,6,Ana de Armas,Vivian Sternwood,https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face
+CAST,c23,6,Willem Dafoe,Chief Morrison,https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
+CAST,c24,6,Saoirse Ronan,Carmen Sternwood,https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face
+REVIEW,r1,1,MovieCritic,5.0,An absolute masterpiece of action filmmaking!,2024-01-15
+REVIEW,r2,1,FilmBuff,4.5,Intense thrilling and visually stunning.,2024-01-10
+REVIEW,r3,2,SpaceFan,5.0,The visuals are out of this world! A must-see.,2024-02-20
+REVIEW,r4,3,RomComLover,4.5,Brought tears to my eyes. Simply beautiful.,2023-12-05
+REVIEW,r5,4,HorrorFan,4.0,Genuinely scary! Great atmosphere and tension.,2024-01-25
+REVIEW,r6,5,AnimationWorld,5.0,Pure magic! Perfect for the whole family.,2024-02-10
+REVIEW,r7,6,NoirLover,4.5,Classic noir vibes with a modern twist. Excellent!,2023-11-18
