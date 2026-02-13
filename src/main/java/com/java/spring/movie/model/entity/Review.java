@@ -21,6 +21,7 @@ public class Review {
 
     @Column(columnDefinition = "TEXT")
     private String content;
+    
 
     private String date; // In production, consider using LocalDate or LocalDateTime
 

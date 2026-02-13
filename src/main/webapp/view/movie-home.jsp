@@ -84,12 +84,11 @@
 		<%-- 2. CAROUSEL SECTION --%>
 		<div class="container mx-auto px-4 -mt-40 relative z-20 pb-20">
 			<%-- Changed movies="${movie}" to movies="${allMovies}" --%>
-			<app:movieCarousel title="🔥 Trending Now" allmovies="${allmovies}" />
-			<app:movieCarousel title="⭐ Top Rated" allmovies="${allmovies}" />
-       	 	<app:movieCarousel title="🆕 New Releases" allmovies="${allmovies}" />
+			<app:movie-carousel title="🔥 Trending Now" allmovies="${allmovies}" />
+			<app:movie-carousel title="⭐ Top Rated" allmovies="${allmovies}" />
+       	 	<app:movie-carousel title="🆕 New Releases" allmovies="${allmovies}" />
 
 		</div>
-		
 	</c:if>
 
 	<c:if test="${empty movie}">
@@ -99,3 +98,4 @@
 		</div>
 	</c:if>
 </app:layout>
+<app:footer />

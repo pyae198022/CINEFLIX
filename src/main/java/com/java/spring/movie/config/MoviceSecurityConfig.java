@@ -26,7 +26,7 @@ public class MoviceSecurityConfig {
 	SecurityFilterChain httpSecurity(HttpSecurity http) throws Exception {
 		
 		http.authorizeHttpRequests(req -> {
-			req.requestMatchers("/" ,"/signup", "/login", "/movie/**", "/static/**").permitAll();
+			req.requestMatchers("/" ,"/signup", "/login" ,"/movie/**", "/movie-detail/**", "/static/**" ,"/error").permitAll();
 			req.requestMatchers("/admin/**").hasAuthority("Admin");
 			req.requestMatchers("/member/**").hasAnyAuthority("Admin", "Member");
 			req.anyRequest().authenticated();

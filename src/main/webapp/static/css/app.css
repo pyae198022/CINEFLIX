@@ -159,3 +159,30 @@ body {
 .text-balance {
   text-wrap: balance;
 }
+
+/* Custom Button Styles */
+.btn-primary-glow {
+    background-color: #e50914; /* Netflix Red */
+    color: white;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 0 0 rgba(229, 9, 20, 0);
+}
+
+.btn-primary-glow:hover {
+    background-color: #f40612;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(229, 9, 20, 0.5);
+}
+
+.btn-secondary-glass {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-glass:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}

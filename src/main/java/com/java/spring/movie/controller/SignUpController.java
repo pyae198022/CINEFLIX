@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.java.spring.movie.controller.dto.SignUpForm;
+import com.java.spring.movie.controller.input.SignUpForm;
 import com.java.spring.movie.exception.AppBussinessException;
 import com.java.spring.movie.model.repo.service.SignUpService;
 
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignUpController {
 	
-	private final AuthenticationManager authenticationManager = null;
+	private final AuthenticationManager authenticationManager;
 	
 	private final SignUpService signUpService;
 

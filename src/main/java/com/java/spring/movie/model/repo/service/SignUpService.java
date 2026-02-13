@@ -4,7 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.java.spring.movie.controller.dto.SignUpForm;
+import com.java.spring.movie.controller.input.SignUpForm;
 import com.java.spring.movie.exception.AppBussinessException;
 import com.java.spring.movie.model.entity.Account;
 import com.java.spring.movie.model.entity.Account.Role;
