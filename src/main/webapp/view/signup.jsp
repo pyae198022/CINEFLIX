@@ -115,18 +115,6 @@ body {
 						fill="currentColor" />
                 </svg> Sign up with Google
 			</a>
-
-			<!-- Github Sign Up -->
-			<a
-				href="${pageContext.request.contextPath }/oauth2/authorization/github"
-				class="w-full flex items-center justify-center px-4 py-2 border border-gray-600 rounded-xl shadow-sm text-sm font-medium text-white bg-gray-700 hover:bg-gray-600 transition duration-300">
-				<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"
-					aria-hidden="true">
-                    <path fill-rule="evenodd"
-						d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.11.82-.26.82-.577v-2.02c-3.33.72-4.04-1.61-4.04-1.61-.54-1.37-1.32-1.74-1.32-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49 1.01.11-.79.42-1.3.76-1.59-2.65-.3-5.45-1.32-5.45-5.92 0-1.3.46-2.36 1.2-3.2-.12-.3-.52-1.52.12-3.18 0 0 .98-.32 3.2.98.92-.26 1.88-.39 2.85-.39.97 0 1.93.13 2.85.39 2.22-1.3 3.2-.98 3.2-.98.64 1.66.24 2.88.12 3.18.74.84 1.2 1.9 1.2 3.2 0 4.62-2.8 5.62-5.45 5.92.43.37.82 1.09.82 2.2v3.31c0 .32.22.68.82.57C20.562 21.8 24 17.302 24 12c0-6.627-5.373-12-12-12z"
-						clip-rule="evenodd" />
-                </svg> Sign up with Github
-			</a>
 		</div>
 
 		<!-- Login Link -->

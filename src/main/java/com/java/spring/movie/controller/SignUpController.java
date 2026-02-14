@@ -1,6 +1,7 @@
 package com.java.spring.movie.controller;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
@@ -45,7 +46,9 @@ public class SignUpController {
 			
 			signUpService.createAccount(form);
 			
-			var authencation = authenticationManager.authenticate(form.getToken());
+			var authencation = authenticationManager.authenticate(
+				    new UsernamePasswordAuthenticationToken(form.getEmail(), form.getPassword())
+				);
 			
 			var securityContext = SecurityContextHolder.getContext();
 			securityContext.setAuthentication(authencation);
@@ -53,7 +56,7 @@ public class SignUpController {
 			var session = request.getSession(true);
 			session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, securityContext);
 			
-			return "redirect:/movie";
+			return "redirect:/";
 			
 		} catch (AppBussinessException e) {
 			result.rejectValue("email", null, e.getMessage());
