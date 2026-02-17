@@ -19,14 +19,16 @@ public class MovieDetailsController {
 
 	@GetMapping
 	public String movieDetails(@RequestParam("id") String id, ModelMap model) {
-	        // Fetch movie from DB
 	        var movie = movieService.findById(id);
+	        var similarMovies = movieService.findSimilarMovies(movie);
 	        
 	        if (movie == null) {
-	            return "redirect:/error"; // Handle movie not found
+	            return "redirect:/error";
 	        }
 
 	        model.addAttribute("movie", movie);
-	        return "movie-details"; // This should match your JSP file name
+	        model.addAttribute("similarMovies", similarMovies);
+	        
+	        return "movie-details"; 
 	}
 }

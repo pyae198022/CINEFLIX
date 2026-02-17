@@ -1,5 +1,6 @@
 package com.java.spring.movie.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -33,17 +34,17 @@ public class Movie {
     private String backdrop;
     private String trailerUrl;
     private String director;
-    private String movieImage;
-
+    
     @ElementCollection
     @CollectionTable(name = "movie_genres", joinColumns = @JoinColumn(name = "movie_id"))
     @Column(name = "genre")
-    private List<String> genre;
+    private List<String> genre = new ArrayList<>();
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CastMember> cast;
+    private List<CastMember> cast = new ArrayList<>();
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
+
 
 }

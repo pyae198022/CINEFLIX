@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.spring.movie.controller.output.MovieSearchDto;
-import com.java.spring.movie.model.entity.Movie;
 import com.java.spring.movie.model.repo.service.MovieService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,18 +23,15 @@ public class MovieController {
 
     @GetMapping
     public String totalMovies(ModelMap model) {
-        // Fetch all movies from MySQL
+       
         var movies = movieService.findAllMovie();
         
-        // Pick the first movie to display in your JSP Hero section
         if (!movies.isEmpty()) {
             model.addAttribute("movie", movies.get(0));
             
-         // NEW: This is for the Carousel section (the whole list)
             model.addAttribute("allmovies", movies);
         }
 
-        // Optional: pass total count if you need it elsewhere
         model.addAttribute("totalCount", movies.size());
 
         return "movie-home";
@@ -44,7 +40,7 @@ public class MovieController {
     @GetMapping("/search")
     @ResponseBody
     public List<MovieSearchDto> searchMovies(@RequestParam String query) {
-        // Returns the list as JSON
         return movieService.searchByTitleOrGenre(query);
     }
+    
 }

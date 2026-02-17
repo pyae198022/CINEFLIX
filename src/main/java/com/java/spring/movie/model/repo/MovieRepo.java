@@ -12,7 +12,7 @@ import com.java.spring.movie.model.entity.Movie;
 
 public interface MovieRepo extends JpaRepository<Movie, String>{
 
-	Optional<Movie> findByGenreContaining(String primaryGenre);
+	List<Movie> findByGenreContaining(String primaryGenre);
 
 	@Query("""
 	        SELECT m
@@ -22,6 +22,8 @@ public interface MovieRepo extends JpaRepository<Movie, String>{
 	               SELECT g FROM m.genre g WHERE LOWER(g) LIKE LOWER(CONCAT('%', :query, '%'))
 	           )
 	    """)
-	    List<Movie> searchMovies(@Param("query") String query);
+	List<Movie> searchMovies(@Param("query") String query);
+	
+	
 
 }

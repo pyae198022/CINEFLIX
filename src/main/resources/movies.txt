@@ -16,30 +16,6 @@ GENRE,5,Animation
 GENRE,5,Adventure
 GENRE,6,Crime
 GENRE,6,Noir
-CAST,c1,1,Tom Hardy,Max Rockatansky,https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
-CAST,c2,1,Charlize Theron,Imperator Furiosa,https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face
-CAST,c3,1,Nicholas Hoult,Nux,https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face
-CAST,c4,1,Zoë Kravitz,Toast the Knowing,https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face
-CAST,c5,2,Matthew McConaughey,Cooper,https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop&crop=face
-CAST,c6,2,Anne Hathaway,Dr. Brand,https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face
-CAST,c7,2,Jessica Chastain,Murphy,https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face
-CAST,c8,2,Michael Caine,Professor Brand,https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
-CAST,c9,3,Ryan Gosling,Noah,https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face
-CAST,c10,3,Emma Stone,Mia,https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face
-CAST,c11,3,Rachel McAdams,Allie,https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face
-CAST,c12,3,Timothée Chalamet,Young Noah,https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop&crop=face
-CAST,c13,4,Florence Pugh,Eleanor Vance,https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face
-CAST,c14,4,Pedro Pascal,Dr. John Montague,https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
-CAST,c15,4,Mia Goth,Theodora,https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face
-CAST,c16,4,Bill Skarsgård,Luke Sanderson,https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face
-CAST,c17,5,Zendaya,Princess Aria (voice),https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face
-CAST,c18,5,Oscar Isaac,Sir Roland (voice),https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
-CAST,c19,5,Anya Taylor-Joy,The Witch (voice),https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face
-CAST,c20,5,Keanu Reeves,The King (voice),https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop&crop=face
-CAST,c21,6,Robert Pattinson,Detective Jake Marlowe,https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face
-CAST,c22,6,Ana de Armas,Vivian Sternwood,https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face
-CAST,c23,6,Willem Dafoe,Chief Morrison,https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face
-CAST,c24,6,Saoirse Ronan,Carmen Sternwood,https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face
 REVIEW,r1,1,MovieCritic,5.0,An absolute masterpiece of action filmmaking!,2024-01-15
 REVIEW,r2,1,FilmBuff,4.5,Intense thrilling and visually stunning.,2024-01-10
 REVIEW,r3,2,SpaceFan,5.0,The visuals are out of this world! A must-see.,2024-02-20

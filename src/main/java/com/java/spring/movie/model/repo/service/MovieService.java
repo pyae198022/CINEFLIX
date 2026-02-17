@@ -1,22 +1,24 @@
 package com.java.spring.movie.model.repo.service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.java.spring.movie.controller.output.MovieSearchDto;
-import com.java.spring.movie.model.entity.CastMember;
+import com.java.spring.movie.exception.AppBussinessException;
 import com.java.spring.movie.model.entity.Movie;
 import com.java.spring.movie.model.entity.Review;
-import com.java.spring.movie.model.repo.CastMemberRepo;
 import com.java.spring.movie.model.repo.MovieRepo;
 import com.java.spring.movie.model.repo.ReviewRepo;
 
+import jakarta.servlet.ServletContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -25,10 +27,8 @@ import lombok.RequiredArgsConstructor;
 public class MovieService {
 
 	private final MovieRepo movieRepository;
-
-	private final CastMemberRepo castMemberRepository;
-
 	private final ReviewRepo reviewRepository;
+	private final ServletContext servletContext;
 
 	@Transactional
 	public void importMoviesFromFile(String filePath) {
@@ -47,9 +47,6 @@ public class MovieService {
 					break;
 				case "GENRE":
 					processGenre(data);
-					break;
-				case "CAST":
-					processCast(data);
 					break;
 				case "REVIEW":
 					processReview(data);
@@ -95,19 +92,6 @@ public class MovieService {
 		});
 	}
 
-	private void processCast(String[] data) {
-		String movieId = data[2].trim();
-		movieRepository.findById(movieId).ifPresent(movie -> {
-			CastMember cast = new CastMember();
-			cast.setId(data[1].trim());
-			cast.setName(data[3].trim());
-			cast.setCharacterName(data[4].trim());
-			cast.setPhoto(data[5].trim());
-			cast.setMovie(movie); // Link to parent
-			castMemberRepository.save(cast);
-		});
-	}
-
 	private void processReview(String[] data) {
 		String movieId = data[2].trim();
 		movieRepository.findById(movieId).ifPresent(movie -> {
@@ -132,30 +116,91 @@ public class MovieService {
 		return movieRepository.findById(id).orElse(null);
 	}
 
-	public List<Movie> findSimilarMovies(Movie movie) {
-		if (movie.getGenre() == null || movie.getGenre().isEmpty()) {
-			return List.of();
-		}
-
-		String primaryGenre = movie.getGenre().get(0);
-
-		return movieRepository.findByGenreContaining(primaryGenre).stream()
-				.filter(m -> !m.getId().equals(movie.getId())) // Don't show the current movie
-				.limit(6)
-				.toList();
+	public List<MovieSearchDto> searchByTitleOrGenre(String query) {
+		return movieRepository.searchMovies(query).stream()
+				.map(m -> new MovieSearchDto(m.getId(), m.getTitle(), m.getYear(), m.getPoster(), m.getGenre()
+				// works
+				)).toList();
 	}
+	
+	
+	@Transactional
+	public void saveMovie(
+	        String id,
+	        String title,
+	        Integer year,
+	        Double rating,
+	        String duration,
+	        String genre,
+	        String description,
+	        String director,
+	        String trailerUrl,
+	        MultipartFile posterFile,
+	        String posterUrl
+	) throws IOException {
 
-	  public List<MovieSearchDto> searchByTitleOrGenre(String query) {
-	        return movieRepository.searchMovies(query)
-	                .stream()
-	                .map(m -> new MovieSearchDto(
-	                        m.getId(),
-	                        m.getTitle(),
-	                        m.getYear(),
-	                        m.getPoster(),
-	                        m.getGenre() // List<String> works here
-	                ))
-	                .toList();
+	    Movie movie;
+	    if (id != null && !id.isBlank()) {
+	        movie = movieRepository.findById(id)
+	                .orElseThrow(() -> new AppBussinessException("Movie not found: " + id));
+	    } else {
+	        movie = new Movie();
+	        movie.setId(java.util.UUID.randomUUID().toString());
 	    }
 
+	    movie.setTitle(title);
+	    movie.setYear(year);
+	    movie.setRating(rating);
+	    movie.setDuration(duration);
+	    movie.setDescription(description);
+	    movie.setDirector(director);
+	    movie.setTrailerUrl(trailerUrl);
+
+	    if (genre != null && !genre.isBlank()) {
+	        List<String> genres = Arrays.stream(genre.split(","))
+	                                    .map(String::trim)
+	                                    .collect(java.util.stream.Collectors.toCollection(ArrayList::new));
+	        movie.setGenre(genres);
+	    }
+
+        if (posterFile != null && !posterFile.isEmpty()) {
+            String uploadDir = servletContext.getRealPath("/static/movies/");
+            
+            File dir = new File(uploadDir);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            String fileName = System.currentTimeMillis() + "_" + posterFile.getOriginalFilename();
+            File saveFile = new File(uploadDir, fileName);
+            
+            // Save the file
+            posterFile.transferTo(saveFile);
+
+            // Store only the filename in the database
+            movie.setPoster(fileName);
+            
+        } else if (posterUrl != null && !posterUrl.isBlank()) {
+            movie.setPoster(posterUrl);
+        }
+
+        movieRepository.save(movie);
+	}
+
+	@Transactional
+	public void deleteMovie(String id) {
+	    movieRepository.deleteById(id);
+	}
+	
+	// Alternative better logic for MovieService.java
+	public List<Movie> findSimilarMovies(Movie movie) {
+	    if (movie.getGenre() == null || movie.getGenre().isEmpty()) return List.of();
+
+	    return movieRepository.findAll().stream()
+	            .filter(m -> !m.getId().equals(movie.getId()))
+	            // Checks if there is any overlap between the two genre lists
+	            .filter(m -> m.getGenre().stream().anyMatch(movie.getGenre()::contains))
+	            .limit(6)
+	            .toList();
+	}
 }

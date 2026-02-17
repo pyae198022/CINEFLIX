@@ -238,3 +238,27 @@ body {
 	height: 8px;
 	border-radius: 50%;
 }
+
+.glass-effect {
+	background: rgba(10, 10, 10, 0.8);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.search-dropdown-shadow {
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.animate-fade-in {
+	animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {from { opacity:0;
+	transform: translateY(-10px);
+}
+
+to {
+	opacity: 1;
+	transform: translateY(0);
+	}
+}

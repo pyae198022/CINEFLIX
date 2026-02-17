@@ -1,83 +1,41 @@
-/* Root container */
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* index.css */
+.star-icon {
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 28px;
+    height: 28px;
+    color: #262626; /* Dark gray for unselected */
+    fill: none;
 }
 
-/* Logo styling */
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.star-icon:hover {
+    transform: scale(1.2) rotate(5deg);
+    color: #fbbf24;
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.star-icon.active {
+    color: #fbbf24; /* Yellow-400 */
+    fill: #fbbf24;
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.3));
 }
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Scrollbar for the textarea to match dark theme */
+#content::-webkit-scrollbar {
+    width: 6px;
+}
+#content::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+#content::-webkit-scrollbar-thumb {
+    background: #262626;
+    border-radius: 10px;
 }
 
-/* Logo spin animation */
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Subtle animation for review cards */
+.group:hover {
+    background-color: #161616 !important;
+    transform: translateY(-2px);
 }
-
-/* Animation applied only if user allows motion */
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-/* Card styling */
-.card {
-  padding: 2em;
-}
-
-/* Read-the-docs link styling */
-.read-the-docs {
-  color: #888;
-}
-
-
-.glass-effect {
-	background: rgba(255, 255, 255, 0.1);
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.animate-fade-in {
-	animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {from { opacity:0;
-	transform: translateX(10px);
-}
-
-to {
-	opacity: 1;
-	transform: translateX(0);
-}
-
-}
-/* Custom Colors (Matching your React code) */
-:root {
-	--primary: #e11d48; /* Example Rose Red */
-	--foreground: #ffffff;
-}
-
-body {
-	background-color: #0f172a;
-	color: white;
+.review-item.hidden {
+    display: none;
 }

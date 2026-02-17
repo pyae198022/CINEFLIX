@@ -1,7 +1,11 @@
 package com.java.spring.movie.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,6 +18,7 @@ import lombok.Data;
 public class Review {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     private String author;
@@ -23,8 +28,9 @@ public class Review {
     private String content;
     
 
-    private String date; // In production, consider using LocalDate or LocalDateTime
+    private String date;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "movie_id")
     private Movie movie;
