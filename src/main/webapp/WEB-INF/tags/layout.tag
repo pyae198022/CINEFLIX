@@ -19,9 +19,9 @@
 <link rel="stylesheet" href="/static/css/app.css" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
-<style>
-</style>
 </head>
 <body class="bg-[#0a0a0a] pt-20">
 
@@ -42,7 +42,7 @@
 							class="text-white/60 hover:text-white transition-colors text-sm">Movies</a>
 						<a href="#"
 							class="text-white/60 hover:text-white transition-colors text-sm">TV
-							Shows</a> <a href="${root}/my-lists/allMyLists"
+							Shows</a> <a href="${root}/my-lists/my-list"
 							class="text-white/60 hover:text-white transition-colors text-sm">My
 							Lists</a>
 					</nav>
@@ -90,39 +90,46 @@
 						<div class="relative">
 							<%-- Profile Trigger (Circle with letter as in screenshot) --%>
 							<button id="profileDropdownBtn" class="focus:outline-none">
-								<div class="h-9 w-9 rounded-full bg-[#3d1a1a] border border-white/20 flex items-center justify-center overflow-hidden">
-									<span class="text-white text-sm font-bold uppercase">
-										<sec:authorize access="principal instanceof T(org.springframework.security.core.userdetails.User)">
-											<sec:authentication property="principal.username" var="userEmail" />
-										</sec:authorize> 
-										<sec:authorize access="principal instanceof T(org.springframework.security.oauth2.core.user.DefaultOAuth2User)">
-											<sec:authentication property="principal.attributes['email']" var="userEmail" />
-										</sec:authorize> 
-										${userEmail.substring(0,1)}
+								<div
+									class="h-9 w-9 rounded-full bg-[#3d1a1a] border border-white/20 flex items-center justify-center overflow-hidden">
+									<span class="text-white text-sm font-bold uppercase"> <sec:authorize
+											access="principal instanceof T(org.springframework.security.core.userdetails.User)">
+											<sec:authentication property="principal.username"
+												var="userEmail" />
+										</sec:authorize> <sec:authorize
+											access="principal instanceof T(org.springframework.security.oauth2.core.user.DefaultOAuth2User)">
+											<sec:authentication property="principal.attributes['email']"
+												var="userEmail" />
+										</sec:authorize> ${userEmail.substring(0,1)}
 									</span>
 								</div>
 							</button>
 
-							<%-- The Dropdown (Matching the Screenshot) --%>
-							<div id="profileDropdown" class="hidden absolute right-0 mt-3 dropdown-menu-custom z-[60] shadow-2xl">
-								<div class="px-4 py-3 text-sm text-gray-400 border-b border-white/10">
-									${userEmail}
-								</div>
-								
+							
+							<div id="profileDropdown"
+								class="hidden absolute right-0 mt-3 dropdown-menu-custom z-[100] shadow-2xl">
+								<div
+									class="px-4 py-3 text-sm text-gray-400 border-b border-white/10">
+									${userEmail}</div>
+
 								<a href="<c:url value='/profile' />" class="dropdown-item">
 									<i data-lucide="user" class="mr-3 w-5 h-5"></i> My Profile
 								</a>
-								
+
 								<sec:authorize access="hasAuthority('Admin')">
-									<a href="<c:url value='${root }/admin' />" class="dropdown-item">
-										<i data-lucide="shield" class="mr-3 w-5 h-5"></i> Admin Dashboard
+									<a href="<c:url value='${root }/admin' />"
+										class="dropdown-item"> <i data-lucide="shield"
+										class="mr-3 w-5 h-5"></i> Admin Dashboard
 									</a>
 								</sec:authorize>
 
-								<form id="logoutForm" action="<c:url value='/logout' />" method="post" class="border-t border-white/10">
+								<form id="logoutForm" action="<c:url value='/logout' />"
+									method="post" class="border-t border-white/10">
 									<sec:csrfInput />
-									<button type="submit" class="w-full dropdown-item dropdown-item-signout">
-										<i data-lucide="log-out" class="mr-3 w-5 h-5 text-red-500"></i> Sign Out
+									<button type="submit"
+										class="w-full dropdown-item dropdown-item-signout">
+										<i data-lucide="log-out" class="mr-3 w-5 h-5 text-red-500"></i>
+										Sign Out
 									</button>
 								</form>
 							</div>
@@ -143,11 +150,11 @@
 		<jsp:doBody />
 	</main>
 
-<%-- Inside your JSP Layout file --%>
-<script>
-    // Define global variables for the external JS file to use
-    window.rootPath = "${pageContext.request.contextPath}";
-</script>
-<script src="${pageContext.request.contextPath}/static/js/applicaton.js"></script>
+	<%-- Inside your JSP Layout file --%>
+	<script>
+		window.rootPath = "${pageContext.request.contextPath}";
+	</script>
+	<script
+		src="${pageContext.request.contextPath}/static/js/applicaton.js"></script>
 </body>
 </html>

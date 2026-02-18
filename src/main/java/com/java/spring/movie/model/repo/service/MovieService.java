@@ -6,8 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -61,35 +64,43 @@ public class MovieService {
 	}
 
 	private void processMovie(String[] data) {
-		String id = data[1].trim();
-		Movie movie = movieRepository.findById(id).orElse(new Movie());
+	    String id = data[1].trim();
+	    Movie movie = movieRepository.findById(id).orElse(new Movie());
 
-		movie.setId(id);
-		movie.setTitle(data[2].trim());
-		movie.setYear(Integer.parseInt(data[3].trim()));
-		movie.setRating(Double.parseDouble(data[4].trim()));
-		movie.setDuration(data[5].trim());
-		movie.setDescription(data[6].trim());
-		movie.setPoster(data[7].trim());
-		movie.setTrailerUrl(data[8].trim());
-		movie.setDirector(data[9].trim());
+	    movie.setId(id);
+	    movie.setTitle(data[2].trim());
+	    movie.setYear(Integer.parseInt(data[3].trim()));
+	    movie.setRating(Double.parseDouble(data[4].trim()));
+	    movie.setDuration(data[5].trim());
+	    movie.setDescription(data[6].trim());
+	    movie.setPoster(data[7].trim());
+	    movie.setTrailerUrl(data[8].trim());
+	    movie.setDirector(data[9].trim());
 
-		if (movie.getGenre() == null)
-			movie.setGenre(new ArrayList<>());
-
-		movieRepository.save(movie);
+	    if (movie.getGenre() == null)
+	        movie.setGenre(new ArrayList<>());
+	    
+	    // Safety check for the Long wrapper type
+	    if (movie.getViewCount() == 0) {
+	        movie.setViewCount(0L); 
+	    }
+	    
+	    movieRepository.save(movie);
 	}
 
 	private void processGenre(String[] data) {
-		String movieId = data[1].trim();
-		String genreName = data[2].trim();
+	    String movieId = data[1].trim();
+	    String genreName = data[2].trim();
 
-		movieRepository.findById(movieId).ifPresent(movie -> {
-			if (!movie.getGenre().contains(genreName)) {
-				movie.getGenre().add(genreName);
-				movieRepository.save(movie);
-			}
-		});
+	    movieRepository.findById(movieId).ifPresent(movie -> {
+	        // Double check viewCount here too in case existing DB data is null
+	        if (movie.getViewCount() == 0) movie.setViewCount(0L);
+	        
+	        if (!movie.getGenre().contains(genreName)) {
+	            movie.getGenre().add(genreName);
+	            movieRepository.save(movie);
+	        }
+	    });
 	}
 
 	private void processReview(String[] data) {
@@ -122,85 +133,131 @@ public class MovieService {
 				// works
 				)).toList();
 	}
-	
-	
+
 	@Transactional
-	public void saveMovie(
-	        String id,
-	        String title,
-	        Integer year,
-	        Double rating,
-	        String duration,
-	        String genre,
-	        String description,
-	        String director,
-	        String trailerUrl,
-	        MultipartFile posterFile,
-	        String posterUrl
-	) throws IOException {
+	public void saveMovie(String id, String title, Integer year, Double rating, String duration, String genre,
+			String description, String director, String trailerUrl, MultipartFile posterFile, String posterUrl)
+			throws IOException {
 
-	    Movie movie;
-	    if (id != null && !id.isBlank()) {
-	        movie = movieRepository.findById(id)
-	                .orElseThrow(() -> new AppBussinessException("Movie not found: " + id));
-	    } else {
-	        movie = new Movie();
-	        movie.setId(java.util.UUID.randomUUID().toString());
-	    }
+		Movie movie;
+		if (id != null && !id.isBlank()) {
+			movie = movieRepository.findById(id).orElseThrow(() -> new AppBussinessException("Movie not found: " + id));
+		} else {
+			movie = new Movie();
+			movie.setId(java.util.UUID.randomUUID().toString());
+		}
 
-	    movie.setTitle(title);
-	    movie.setYear(year);
-	    movie.setRating(rating);
-	    movie.setDuration(duration);
-	    movie.setDescription(description);
-	    movie.setDirector(director);
-	    movie.setTrailerUrl(trailerUrl);
+		movie.setTitle(title);
+		movie.setYear(year);
+		movie.setRating(rating);
+		movie.setDuration(duration);
+		movie.setDescription(description);
+		movie.setDirector(director);
+		movie.setTrailerUrl(trailerUrl);
 
-	    if (genre != null && !genre.isBlank()) {
-	        List<String> genres = Arrays.stream(genre.split(","))
-	                                    .map(String::trim)
-	                                    .collect(java.util.stream.Collectors.toCollection(ArrayList::new));
-	        movie.setGenre(genres);
-	    }
+		if (genre != null && !genre.isBlank()) {
+			List<String> genres = Arrays.stream(genre.split(",")).map(String::trim)
+					.collect(java.util.stream.Collectors.toCollection(ArrayList::new));
+			movie.setGenre(genres);
+		}
 
-        if (posterFile != null && !posterFile.isEmpty()) {
-            String uploadDir = servletContext.getRealPath("/static/movies/");
-            
-            File dir = new File(uploadDir);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
+		if (posterFile != null && !posterFile.isEmpty()) {
+			String uploadDir = servletContext.getRealPath("/static/movies/");
 
-            String fileName = System.currentTimeMillis() + "_" + posterFile.getOriginalFilename();
-            File saveFile = new File(uploadDir, fileName);
-            
-            // Save the file
-            posterFile.transferTo(saveFile);
+			File dir = new File(uploadDir);
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
 
-            // Store only the filename in the database
-            movie.setPoster(fileName);
-            
-        } else if (posterUrl != null && !posterUrl.isBlank()) {
-            movie.setPoster(posterUrl);
-        }
+			String fileName = System.currentTimeMillis() + "_" + posterFile.getOriginalFilename();
+			File saveFile = new File(uploadDir, fileName);
 
-        movieRepository.save(movie);
+			posterFile.transferTo(saveFile);
+
+			movie.setPoster(fileName);
+
+		} else if (posterUrl != null && !posterUrl.isBlank()) {
+			movie.setPoster(posterUrl);
+		}
+
+		movieRepository.save(movie);
 	}
 
 	@Transactional
 	public void deleteMovie(String id) {
-	    movieRepository.deleteById(id);
+		movieRepository.deleteById(id);
+	}
+
+	public List<Movie> findSimilarMovies(Movie movie) {
+		if (movie.getGenre() == null || movie.getGenre().isEmpty())
+			return List.of();
+
+		return movieRepository.findAll().stream().filter(m -> !m.getId().equals(movie.getId()))
+				// Checks if there is any overlap between the two genre lists
+				.filter(m -> m.getGenre().stream().anyMatch(movie.getGenre()::contains)).limit(6).toList();
+	}
+
+
+	@Transactional
+	public Movie getMovieForWatching(String id) {
+	    movieRepository.incrementViewCount(id);
+	    return movieRepository.findById(id)
+	            .orElseThrow(() -> new AppBussinessException("Movie not found: " + id));
 	}
 	
-	// Alternative better logic for MovieService.java
-	public List<Movie> findSimilarMovies(Movie movie) {
-	    if (movie.getGenre() == null || movie.getGenre().isEmpty()) return List.of();
+	public Map<String, String> toggleReaction(String movieId, String userId, String type) {
+	    Movie movie = movieRepository.findById(movieId).orElseThrow();
+	    Map<String, String> resp = new HashMap<>();
 
-	    return movieRepository.findAll().stream()
-	            .filter(m -> !m.getId().equals(movie.getId()))
-	            // Checks if there is any overlap between the two genre lists
-	            .filter(m -> m.getGenre().stream().anyMatch(movie.getGenre()::contains))
-	            .limit(6)
-	            .toList();
+	    if ("like".equals(type)) {
+	        if (movie.getLikedUserIds().contains(userId)) {
+	            movie.getLikedUserIds().remove(userId);
+	            resp.put("liked", "false"); // Match JS 'data.liked'
+	        } else {
+	            movie.getLikedUserIds().add(userId);
+	            movie.getDislikedUserIds().remove(userId);
+	            resp.put("liked", "true");
+	        }
+	        resp.put("disliked", "false");
+	    } else if ("dislike".equals(type)) {
+	        if (movie.getDislikedUserIds().contains(userId)) {
+	            movie.getDislikedUserIds().remove(userId);
+	            resp.put("disliked", "false"); // Match JS 'data.disliked'
+	        } else {
+	            movie.getDislikedUserIds().add(userId);
+	            movie.getLikedUserIds().remove(userId);
+	            resp.put("disliked", "true");
+	        }
+	        resp.put("liked", "false");
+	    }
+
+	    movieRepository.save(movie);
+	    resp.put("likes", movie.getFormattedLikes());
+	    return resp;
 	}
+	
+	@Transactional
+    public boolean toggleWatchlist(String movieId, String userId) {
+        Movie movie = movieRepository.findById(movieId)
+                .orElseThrow(() -> new AppBussinessException("Movie not found"));
+
+        boolean added;
+        if (movie.getWatchlistUserIds().contains(userId)) {
+            movie.getWatchlistUserIds().remove(userId);
+            added = false;
+        } else {
+            movie.getWatchlistUserIds().add(userId);
+            added = true;
+        }
+
+        movieRepository.save(movie);
+        return added;
+    }
+
+    /**
+     * Fetches all movies that the user has added to their list.
+     */
+    public List<Movie> getWatchlistForUser(String userId) {
+        return movieRepository.findWatchlistByUserId(userId);
+    }
 }

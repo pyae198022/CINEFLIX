@@ -44,6 +44,17 @@
 
 		<div id="movie-grid"
 			class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+			<c:forEach var="m" items="${watchlist}">
+				<app:movie-card movie="${m}" />
+			</c:forEach>
 		</div>
+
+<script>
+    // Update the count based on server data
+    document.getElementById('movie-count').innerText = '${count} movies saved';
+    if (${count == 0}) {
+        document.getElementById('empty-state').classList.remove('hidden');
+    }
+</script>
 	</main>
 </app:layout>

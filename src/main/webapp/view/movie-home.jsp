@@ -21,15 +21,6 @@
 			<%-- Content --%>
 			<div class="relative container mx-auto px-4 h-full flex items-center">
 				<div class="max-w-2xl">
-					<%-- Badges --%>
-					<div class="flex items-center gap-3 mb-4">
-						<span
-							class="bg-red-600 px-3 py-1 rounded text-sm font-semibold text-white">
-							FEATURED </span> <span
-							class="bg-gray-700 px-3 py-1 rounded text-sm font-medium text-gray-200">
-							<c:out value="${movie.year}" />
-						</span>
-					</div>
 
 					<%-- Title --%>
 					<h1
@@ -63,19 +54,26 @@
 
 					<%-- Buttons --%>
 					<div class="flex items-center gap-4">
-						<button onclick="window.open('${movie.trailerUrl}', '_blank')"
+						<a
+							href="${pageContext.request.contextPath}/movie/watch?id=${movie.id}"
 							class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-red-600/30">
 							<svg size="20" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-								<path d="M8 5v14l11-7z" /></svg>
-							Watch Now
-						</button>
-						<button
-							class="flex items-center gap-2 bg-gray-600/80 hover:bg-gray-600 text-white px-8 py-4 rounded font-semibold transition-all duration-300 transform hover:scale-105">
+								<path d="M8 5v14l11-7z" /></svg> Watch Now
+						</a>
+						<div
+							onclick="toggleWatchlist('${movie.id}', this); event.preventDefault(); event.stopPropagation();"
+							class="flex items-center gap-2 px-8 py-4 rounded font-semibold transition-all duration-300 transform hover:scale-105 cursor-pointer text-white
+     							${movie.inWatchlist ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-600/80 hover:bg-gray-600'}">
+
 							<svg size="20" class="w-5 h-5" fill="none" stroke="currentColor"
 								stroke-width="2" viewBox="0 0 24 24">
-								<path d="M12 5v14M5 12h14" /></svg>
-							Add to List
-						</button>
+       								 <path
+									d="${movie.inWatchlist ? 'M20 6L9 17l-5-5' : 'M12 5v14M5 12h14'}" />
+    							</svg>
+
+							<span class="btn-text"> ${movie.inWatchlist ? 'In Your List' : 'Add to List'}
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -84,9 +82,9 @@
 		<%-- 2. CAROUSEL SECTION --%>
 		<div class="container mx-auto px-4 -mt-40 relative z-20 pb-20">
 			<%-- Changed movies="${movie}" to movies="${allMovies}" --%>
-			<app:movie-carousel title="🔥 Trending Now" allmovies="${allmovies}" />
-			<app:movie-carousel title="⭐ Top Rated" allmovies="${allmovies}" />
-       	 	<app:movie-carousel title="🆕 New Releases" allmovies="${allmovies}" />
+			<app:movie-carousel title="🔥 Trending Now" allmovies="${trendingMovies}" />
+			<app:movie-carousel title="⭐ Top Rated" allmovies="${topMovies}" />
+			<app:movie-carousel title="🆕 New Releases" allmovies="${newMovies}" />
 
 		</div>
 	</c:if>

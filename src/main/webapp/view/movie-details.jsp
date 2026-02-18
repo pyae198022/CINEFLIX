@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="app" tagdir="/WEB-INF/tags"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/index.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/static/css/index.css">
 
 <app:layout>
 	<div class="min-h-screen bg-[#0a0a0a] text-white">
@@ -69,19 +70,27 @@
 
 					<%-- Actions: Styled like "Watch Now" and "Add to List" --%>
 					<div class="flex items-center gap-4">
-						<button
+						<%-- Inside your detail page --%>
+						<a href="${pageContext.request.contextPath}/movie/watch?id=${movie.id}"
 							class="flex items-center gap-3 bg-[#e50914] hover:bg-[#b20710] text-white px-10 py-4 rounded-md font-bold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-red-600/20">
 							<i data-lucide="play" class="w-6 h-6 fill-current"></i> Watch Now
-						</button>
+						</a>
 						<button
-							class="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-10 py-4 rounded-md font-bold transition-all">
-							<i data-lucide="plus" class="w-6 h-6"></i> Add to List
+						onclick="toggleWatchlist('${movie.id}', this); event.preventDefault(); event.stopPropagation();"
+							class="flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-10 py-4 rounded-md font-bold transition-all ${movie.inWatchlist ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-600/80 hover:bg-gray-600'}">
+							<svg size="20" class="w-5 h-5" fill="none" stroke="currentColor"
+								stroke-width="2" viewBox="0 0 24 24">
+       								 <path
+									d="${movie.inWatchlist ? 'M20 6L9 17l-5-5' : 'M12 5v14M5 12h14'}" />
+    							</svg>
+
+							<span class="btn-text"> ${movie.inWatchlist ? 'In Your List' : 'Add to List'}</span>
 						</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<%-- Content Body --%>
 		<div class="container mx-auto px-4 py-12">
 			<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -123,6 +132,6 @@
 			</c:if>
 		</div>
 	</div>
-	
+
 </app:layout>
 <app:footer />
