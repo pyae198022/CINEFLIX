@@ -2,6 +2,8 @@
 
 Cineflix is a high-performance, cinematic web application designed for discovering, tracking, and reviewing movies. Built with a Spring Boot backend and a custom JSP/JSTL frontend, it delivers a modern streaming experience with a dark-themed UI.
 
+![image alt](https://github.com/pyae198022/CINEFLIX/blob/06815962e9421420c7974b096e78499fd85cbddb/Screenshot%202569-03-14%20at%2011.54.20.png)
+
 🛠️ Tech Stack
 
 Backend: Java 17, Spring Boot 3.x, Spring Data JPA
