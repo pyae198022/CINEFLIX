@@ -1,56 +1,54 @@
-🎬 Cineflix - Movie Streaming Platform
+# 🎬 Cineflix - Movie Streaming Platform
 
-Cineflix is a high-performance, cinematic web application designed for discovering, tracking, and reviewing movies. Built with a Spring Boot backend and a custom JSP/JSTL frontend, it delivers a modern streaming experience with a dark-themed UI.
+Cineflix is a high-performance, cinematic web application designed for discovering, tracking, and reviewing movies. Built with a **Spring Boot** backend and a custom **JSP/JSTL** frontend, it delivers a modern streaming experience with a dark-themed UI inspired by industry leaders.
 
-![image alt](https://github.com/pyae198022/CINEFLIX/blob/06815962e9421420c7974b096e78499fd85cbddb/Screenshot%202569-03-14%20at%2011.54.20.png)
+## 📸 Screenshots
 
-🛠️ Tech Stack
+| Home Page - Hero Section | User Reviews & Ratings & Trailer |
+|:---:|:---:|
+| ![Home](https://github.com/pyae198022/CINEFLIX/blob/06815962e9421420c7974b096e78499fd85cbddb/Screenshot%202569-03-14%20at%2011.54.20.png?raw=true) | ![Discovery](https://github.com/pyae198022/CINEFLIX/blob/08b42010b2fd7c52606cea57e95b8f61da525f71/Screenshot%202569-03-14%20at%2011.56.10.png?raw=true) |
 
-Backend: Java 17, Spring Boot 3.x, Spring Data JPA
+| Genre Filtering | Movie Details |
+|:---:|:---:|
+| ![Filters](https://github.com/pyae198022/CINEFLIX/blob/08b42010b2fd7c52606cea57e95b8f61da525f71/Screenshot%202569-03-14%20at%2011.56.26.png?raw=true) | ![Details](https://github.com/pyae198022/CINEFLIX/blob/81544f1d7b97a62e03724a2b9fee8d7f19a36815/Screenshot%202569-03-14%20at%2012.16.48.png) |
 
-Database: MySQL 8.0
+| My Profile | Admin Dashoard |
+|:---:|:---:|
+| ![Reviews](https://github.com/pyae198022/CINEFLIX/blob/08b42010b2fd7c52606cea57e95b8f61da525f71/Screenshot%202569-03-14%20at%2011.57.06.png?raw=true) | ![Search](https://github.com/pyae198022/CINEFLIX/blob/08b42010b2fd7c52606cea57e95b8f61da525f71/Screenshot%202569-03-14%20at%2011.57.53.png?raw=true) |
 
-Frontend: JSP (JavaServer Pages), JSTL, Tailwind CSS
+---
 
-Scripts: Vanilla JavaScript (ES6+)
+## 🛠️ Tech Stack
 
-Data Format: Custom CSV/Text-based Data Loader
+* **Backend:** Java 17, Spring Boot 3.x, Spring Data JPA
+* **Database:** MySQL 8.0
+* **Frontend:** JSP (JavaServer Pages), JSTL, Tailwind CSS
+* **Scripts:** Vanilla JavaScript (ES6+)
+* **Data Management:** Custom CSV/Text-based Data Loader for bulk movie metadata.
 
-✨ Core Features
+## ✨ Core Features
 
-🎞️ Dynamic Discovery
+### 🎞️ Dynamic Discovery
+* **Hero Section:** Dynamically showcases a "Featured Movie" with high-resolution backdrops and metadata.
+* **Interactive Carousels:** Smooth, horizontal scrolling categories for Trending, New Releases, and Genres.
 
-Hero Section: Dynamically showcases a "Featured Movie" with high-resolution backdrops and metadata.
+### 📝 User Engagement
+* **My List (Watchlist):** A personalized space to save and manage movies for future viewing.
+* **Review System:** Real-time feedback loop allowing users to rate films and post text reviews.
+* **Trailer Integration:** Embedded YouTube player for instant trailer viewing without leaving the page.
 
-Interactive Carousels: Smooth, horizontal scrolling categories for Trending, New Releases, and Genres.
+### 🔍 Advanced Filtering
+* **Sidebar Navigation:** Filter movies by specific genres such as Action, Sci-Fi, Horror, and Crime.
+* **Search & Sort:** Comprehensive search functionality with options to sort by rating or release year.
 
-📝 User Engagement
+## 🚀 Challenges Overcome
+* **Complex JSP Layouts:** Implementing a modern, responsive dark-theme UI using Tailwind CSS within a traditional JSP/JSTL environment.
+* **Data Consistency:** Building a custom data loader to ensure large datasets from CSV files mapped correctly to MySQL entities via JPA.
+* **Dev Environment:** Managed and optimized development on macOS, including custom terminal scripts for port management and Git workflow.
 
-My List (Watchlist): A personalized space to save and manage movies for future viewing.
+## ⚙️ Installation & Setup
 
-Review System: Real-time feedback loop allowing users to rate films and post text reviews.
-
-Trailer Integration: Embedded YouTube player for instant trailer viewing.
-
-🔍 Advanced Filtering
-
-Sidebar Navigation: Filter movies by genres such as Action, Sci-Fi, Horror, and Crime.
-
-Search & Sort: View "All Movies" sorted by rating or release year.
-
-⚙️ Installation & Setup
-
-1.Clone the Repository:
-
-git clone https://github.com/pyae198022/cineflix.git
-
-2.Database Configuration:
-
-Create a MySQL database named cineflix_db and update your application.properties:
-spring.datasource.url=jdbc:mysql://localhost:3306/cineflix_db
-spring.datasource.username=YOUR_USERNAME
-spring.datasource.password=YOUR_PASSWORD
-
-3.Run the App:
-   
-mvn spring-boot:run
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/pyae198022/cineflix.git](https://github.com/pyae198022/cineflix.git)
+cd cineflix
